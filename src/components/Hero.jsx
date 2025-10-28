@@ -9,7 +9,7 @@ const Hero = () => {
       {/* 3D Spline Scene */}
       <div className="absolute inset-0">
         <Spline
-          scene="https://prod.spline.design/pDXeCthqjmzYX5Zk/scene.splinecode"
+          scene="https://prod.spline.design/hGDm7Foxug7C6E8s/scene.splinecode"
           style={{ width: '100%', height: '100%' }}
         />
       </div>
@@ -38,14 +38,14 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
-            <button className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-white shadow-lg shadow-blue-900/30 hover:from-blue-500 hover:to-indigo-500 transition">
+            <a href="#tutor" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-white shadow-lg shadow-blue-900/30 hover:from-blue-500 hover:to-indigo-500 transition">
               <Rocket className="h-5 w-5" />
               Get Started
-            </button>
-            <button className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-6 py-3 text-white hover:bg-white/15 transition backdrop-blur">
+            </a>
+            <a href="#dashboard" className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-6 py-3 text-white hover:bg-white/15 transition backdrop-blur">
               <User className="h-5 w-5" />
-              Login / Sign up
-            </button>
+              View Dashboard
+            </a>
           </div>
 
           {/* Quick feature highlights */}
