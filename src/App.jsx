@@ -1,64 +1,49 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import Hero from './components/Hero';
+import DashboardPreview from './components/DashboardPreview';
+import TutorChat from './components/TutorChat';
+import FocusTimer from './components/FocusTimer';
 import { GraduationCap } from 'lucide-react';
 
-import Hero from './components/Hero.jsx';
-import DashboardPreview from './components/DashboardPreview.jsx';
-import TutorChat from './components/TutorChat.jsx';
-import FocusTimer from './components/FocusTimer.jsx';
-
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen w-full bg-[#070a14] text-white">
-      {/* Top Bar */}
-      <header className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-[#070a14]/60 border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <GraduationCap className="h-5 w-5 text-blue-300" />
-            <span className="font-semibold tracking-tight">SmartLearn</span>
-          </div>
-          <nav className="hidden sm:flex items-center gap-6 text-sm text-blue-100/80">
-            <a href="#tutor" className="hover:text-white">Tutor</a>
-            <a href="#dashboard" className="hover:text-white">Dashboard</a>
-            <a href="#focus" className="hover:text-white">Focus</a>
+    <div className="min-h-screen bg-white text-gray-900">
+      <header className="fixed top-0 left-0 right-0 z-40 backdrop-blur bg-white/70 border-b border-black/10">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <a href="#top" className="flex items-center gap-2 font-semibold">
+            <GraduationCap className="w-5 h-5 text-indigo-600" />
+            <span>SmartLearn</span>
+          </a>
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#dashboard" className="hover:text-indigo-600">Dashboard</a>
+            <a href="#tutor" className="hover:text-indigo-600">AI Tutor</a>
+            <a href="#timer" className="hover:text-indigo-600">Focus</a>
           </nav>
-          <button className="rounded-xl bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Dark</button>
+          <div className="flex items-center gap-2">
+            <a href="#tutor" className="px-3 py-2 rounded-lg bg-gray-900 text-white text-sm font-medium">Get Started</a>
+          </div>
         </div>
       </header>
 
-      {/* Hero with Spline */}
-      <Hero />
-
-      {/* Adaptive dashboard preview */}
-      <div id="dashboard">
+      <main id="top" className="pt-16">
+        <Hero />
         <DashboardPreview />
-      </div>
+        <div id="timer">
+          <TutorChat />
+          <FocusTimer />
+        </div>
+      </main>
 
-      {/* AI Tutor Chat */}
-      <div id="tutor">
-        <TutorChat />
-      </div>
-
-      {/* Focus Timer */}
-      <div id="focus">
-        <FocusTimer />
-      </div>
-
-      {/* Footer */}
-      <footer className="border-t border-white/10 bg-[#070a14]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-sm text-blue-200/70"
-          >
-            © {new Date().getFullYear()} SmartLearn — Built for focused, accessible, and adaptive learning.
-          </motion.p>
+      <footer className="border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-10 text-sm text-gray-600 flex flex-wrap items-center justify-between gap-4">
+          <p>© {new Date().getFullYear()} SmartLearn. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <a href="#dashboard" className="hover:text-indigo-600">Overview</a>
+            <a href="#tutor" className="hover:text-indigo-600">Tutor</a>
+            <a href="#timer" className="hover:text-indigo-600">Focus</a>
+          </div>
         </div>
       </footer>
     </div>
   );
 }
-
-export default App;

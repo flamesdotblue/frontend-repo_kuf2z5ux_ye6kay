@@ -1,12 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Rocket, Brain, Sparkles, User } from 'lucide-react';
+import { Rocket, Brain, Award, BookOpen } from 'lucide-react';
 import Spline from '@splinetool/react-spline';
 
-const Hero = () => {
+const Feature = ({ icon: Icon, title, desc }) => (
+  <motion.div
+    className="flex items-start gap-4 p-4 rounded-xl bg-white/10 backdrop-blur border border-white/10"
+    initial={{ opacity: 0, y: 12 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.4 }}
+    transition={{ duration: 0.5 }}
+  >
+    <div className="p-2 rounded-lg bg-white/20 text-white">
+      <Icon className="w-6 h-6" />
+    </div>
+    <div>
+      <h4 className="font-semibold text-white">{title}</h4>
+      <p className="text-sm text-white/80">{desc}</p>
+    </div>
+  </motion.div>
+);
+
+export default function Hero() {
   return (
-    <section className="relative w-full min-h-[90vh] overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0b1020] via-[#0a0f1c] to-[#070a14] text-white">
-      {/* 3D Spline Scene */}
+    <section className="relative min-h-[90vh] w-full overflow-hidden bg-gradient-to-b from-indigo-600 via-violet-600 to-fuchsia-600">
       <div className="absolute inset-0">
         <Spline
           scene="https://prod.spline.design/hGDm7Foxug7C6E8s/scene.splinecode"
@@ -14,66 +31,43 @@ const Hero = () => {
         />
       </div>
 
-      {/* Subtle gradient overlay for readability - does not block interactions */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-[#070a14]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-black/30 to-black/60" />
 
-      {/* Content */}
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col items-center text-center gap-6"
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl text-white"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
-            <Sparkles className="h-4 w-4 text-blue-300" />
-            <span className="text-sm text-blue-100">AI-powered learning platform</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300">
-            Study Smarter, Not Harder
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
+            SmartLearn
           </h1>
-          <p className="max-w-2xl text-base sm:text-lg text-blue-100/90">
-            SmartLearn adapts to you with an AI Tutor, adaptive dashboard, and distraction-free focus tools — all in a sleek, accessible interface.
+          <p className="mt-4 text-lg md:text-xl text-white/90">
+            An AI-powered study companion that adapts to your goals. Master topics faster with personalized guidance, focused sessions, and a beautiful, minimal interface.
           </p>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
-            <a href="#tutor" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-white shadow-lg shadow-blue-900/30 hover:from-blue-500 hover:to-indigo-500 transition">
-              <Rocket className="h-5 w-5" />
-              Get Started
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href="#tutor"
+              className="inline-flex items-center gap-2 rounded-lg bg-white text-indigo-700 font-semibold px-5 py-3 shadow hover:shadow-md transition"
+            >
+              <Rocket className="w-5 h-5" /> Start with the AI Tutor
             </a>
-            <a href="#dashboard" className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-6 py-3 text-white hover:bg-white/15 transition backdrop-blur">
-              <User className="h-5 w-5" />
-              View Dashboard
+            <a
+              href="#dashboard"
+              className="inline-flex items-center gap-2 rounded-lg bg-indigo-500/30 text-white font-semibold px-5 py-3 border border-white/20 hover:bg-indigo-500/40 transition"
+            >
+              <BookOpen className="w-5 h-5" /> Explore Dashboard
             </a>
-          </div>
-
-          {/* Quick feature highlights */}
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-4xl">
-            {[
-              { icon: Brain, title: 'AI Tutor', desc: 'Step-by-step guidance' },
-              { icon: Rocket, title: 'Adaptive Dashboard', desc: 'Track & improve' },
-              { icon: Sparkles, title: 'Smart Notes', desc: 'Clean, sharable notes' },
-            ].map((f, idx) => (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * idx, duration: 0.5 }}
-                className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left backdrop-blur"
-              >
-                <div className="flex items-center gap-3">
-                  <f.icon className="h-5 w-5 text-blue-300" />
-                  <p className="font-semibold text-blue-50">{f.title}</p>
-                </div>
-                <p className="mt-1 text-sm text-blue-100/80">{f.desc}</p>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-14">
+          <Feature icon={Brain} title="Adaptive Learning" desc="Dynamic plans that learn with you and target your weak spots." />
+          <Feature icon={Award} title="Gamified Progress" desc="Earn XP, maintain streaks, and unlock milestones as you study." />
+          <Feature icon={BookOpen} title="Smart Notes" desc="Auto-generate concise notes, summaries, and flashcards." />
+        </div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
